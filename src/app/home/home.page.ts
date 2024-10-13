@@ -53,13 +53,22 @@ export class HomePage {
     // Tambahkan kontrol layer ke peta
     L.control.layers(baseMaps).addTo(this.map);
 
-    // Menambahkan marker di UGM Yogyakarta
-    const marker = L.marker([-7.770717, 110.377239]).addTo(this.map);
+    // Membuat custom icon untuk marker
+    const customIcon = L.icon({
+      iconUrl: 'assets/icon/marker-black.png',  // Path ke file logo
+      iconSize: [40, 40],  // Ukuran icon (width, height)
+      iconAnchor: [20, 40],  // Anchor point (titik tengah bagian bawah)
+      popupAnchor: [0, -40]  // Posisi popup terhadap icon
+    });
+
+    // Menambahkan marker di UGM Yogyakarta dengan icon kustom
+    const marker = L.marker([-7.770717, 110.377239], { icon: customIcon }).addTo(this.map);
 
     // Menambahkan pop-up yang akan muncul ketika marker diklik
     marker.bindPopup('<b>UGM Yogyakarta</b><br>Universitas Gadjah Mada.').openPopup();
-    // Menambahkan marker di Museum Sonobudoyo Yogyakarta
-    const sonobudoyoMarker = L.marker([-7.801850, 110.364917]).addTo(this.map);
+
+    // Menambahkan marker di Museum Sonobudoyo Yogyakarta dengan icon kustom
+    const sonobudoyoMarker = L.marker([-7.801850, 110.364917], { icon: customIcon }).addTo(this.map);
     sonobudoyoMarker.bindPopup('<b>Museum Sonobudoyo</b><br>Museum budaya di Yogyakarta.').openPopup();
   }
 }
